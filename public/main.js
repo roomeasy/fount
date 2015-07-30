@@ -13,11 +13,38 @@ angular.module('fount', [
   'fount.dashboard',
   'fount.helpers',
   'ui.router'
-  ])
-//add other modules as are created for view
+])
 
 .controller("MainController", function($scope, $rootScope){
-    $rootScope.searchForm = "";
+  $scope.searchForm = {
+    content : ""
+  };
+  $scope.printLength = function(){
+    console.log($scope.searchForm.content);
+  }
+
+  $scope.animateContent = function(){
+    var content = angular.element('#fount-content');
+    var searchResults = angular.element('#fount-search-results');
+
+    // searchResults need to return 
+
+    if($scope.searchForm.content.length){
+      content.removeClass('fadeIn');
+      searchResults.addClass('fadeIn');
+      return false;
+      // if there is a search
+        // turn content off
+        // turn searchResults on
+    }else{
+      searchResults.removeClass('fadeIn');
+      content.addClass('fadeIn');
+      return true;
+      // if there isn't a search
+        // turn content on
+        // turn search results off
+    } 
+  }
 })
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
@@ -28,13 +55,18 @@ angular.module('fount', [
     views: {
       jumbo: {
         templateUrl: 'app/search/search.html',
-        controller: 'MainController'
+        controller: 'SearchController'
       },
       content: {
         templateUrl: 'app/Categories/categories_view.html',
         controller: 'CategoryController'
+      },
+      searchResults: {
+        templateUrl: 'app/Results/results_view.html',
+        controller: 'ResultsController'
       }
-    }
+    },
+    controller: 'MainController'
   })
   .state('dashboard', {
     url: '/dashboard',

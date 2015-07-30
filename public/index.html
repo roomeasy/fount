@@ -13,16 +13,16 @@
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   </head>
-  <body ng-app='fount'>
+  <body ng-app='fount' ng-controller="MainController">
     <div class="wrapper">
       <header>
         <div ng-include="'app/nav/nav.html'" ng-controller="NavController"></div>
       </header>
       <div class="page">
-        <div ui-view="jumbo"></div>
-        <div ui-view="content" ng-if="!searchForm.length"></div>
+        <div ui-view="jumbo" id="fount-jumbo"></div>
+        <div class="animated" ui-view="content" id="fount-content" ng-if="animateContent()"></div>
+        <div class="animated" ui-view="searchResults" id="fount-search-results" ng-if="!animateContent()"></div>
       </div>
-
     </div>
 
     <script src="scripts/jquery/dist/jquery.min.js"></script>
