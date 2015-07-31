@@ -59,32 +59,32 @@ angular.module('fount', [
     controller: 'SubmitPostController'
   })
   .state('index.submitSubcat', {
-    url: '/submit-subcategory',
+    url: 'submit-subcategory',
     templateUrl: '/app/submit/submitSubcat.html',
     controller: 'SubmitSubcatController'
   })
   .state('index.submitCategory', {
-    url: '/all',
+    url: 'all',
     templateUrl: '/app/submit/submitCategory.html',
     controller: 'SubmitCategoryController'
   })
   .state('index.signup', {
-    url: '/signup',
+    url: 'signup',
     templateUrl: '/app/auth/sign_up_view.html',
     controller: 'AuthController'
   })
   .state('index.signin', {
-    url: '/signin',
+    url: 'signin',
     templateUrl: '/app/auth/sign_in_view.html',
     controller: 'AuthController'
   })
   .state('index.subcategories', {
-    url: '/{category}',
+    url: '{category}/',
     templateUrl: '/app/subcategories/subcategory_view.html',
     controller: 'SubcategoryController',
   })
   .state('index.subcategories.results', {
-    url: '/{subcategory}',
+    url: '{subcategory}',
     templateUrl: '/app/results/results_view.html',
     controller: 'ResultsController'
   })
