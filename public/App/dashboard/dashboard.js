@@ -9,7 +9,7 @@ angular.module('fount.dashboard', [])
       url : '/myfollows',
       method: 'GET',
     }).then(function(subCategories){
-      // console.log(subCategories.data);
+      console.log(subCategories.data);
       $scope.mySubCategories = subCategories.data;
     })
   };

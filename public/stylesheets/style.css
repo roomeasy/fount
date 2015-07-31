@@ -627,11 +627,26 @@ a.button:hover{
   position: relative;
   width: 100%;
   padding-bottom: 5%;
-  padding-top: 10%;
+  padding-top: 5%;
   font-family: 'Open Sans', sans-serif;
-
+}
+.panel-bottom-margin {
+  margin-bottom: 10px;
 }
 
+.quote-headline {
+  /*font-family: 'Tangerine', cursive;*/
+  font-size: 5em;
+  text-shadow: 1px 1px 15px #555;
+  margin: 0, auto;
+}
+.quote-ref {
+  color: white;
+  font-size: 1.55em;
+  text-shadow: 1px 1px 15px #555;
+  letter-spacing: 1.2;
+  font-weight: 300;
+}
 .navbar-right a:focus, .navbar-right a:visited {
   color: white;
   text-decoration: none;
