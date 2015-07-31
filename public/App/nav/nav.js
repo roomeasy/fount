@@ -1,6 +1,6 @@
 angular.module('fount.nav', [])
 
-.controller('NavController', function($scope, $window, $http, AuthFactory){
+.controller('NavController', function($scope, $rootScope, $window, $http, AuthFactory){
   $scope.isAuth = AuthFactory.authStatus;
   AuthFactory.getAuth()
 
@@ -15,5 +15,9 @@ angular.module('fount.nav', [])
     .error(function(err){
       throw err;
     })
-  };
+  }
+
+  $scope.clearSearch = function(){
+    $rootScope.searchForm.content = "";
+  }
 });
