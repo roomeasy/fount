@@ -2,18 +2,9 @@ angular.module('fount.category', [])
 
 .controller('CategoryController', function ($scope, $http, $window, $location, CurrentCategory){
 
-  $scope.categories = [];
+  $scope.categories = {};
 
   $scope.getCategories = function(){
-    // setInterval(function() {
-    //   $http.get('/myfollows')
-    //   .success(function(data) {
-    //     console.log(data);
-    //   })
-    //   .error(function(data) {
-    //     console.log('error', data);
-    //   })
-    // }, 1000);
 
     // Simple GET request example
     $http.get('api/v1/categories').
@@ -21,6 +12,16 @@ angular.module('fount.category', [])
         // this callback will be called asynchronously
         // when the response is available
         $scope.categories = data;
+        data.forEach(function(category){
+          var data = {
+            id : category.id
+          }
+
+          $http.post('api/numberofsubcategories', data)
+          .then(function(results){
+            category.count = results.data.length;
+          })
+        })
       }).
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
@@ -36,11 +37,11 @@ angular.module('fount.category', [])
 
   $scope.getCategories();
 
-  $scope.animate = function(index){ 
+  $scope.animate = function(index){
     var pointer = angular.element('#cat'+index)
     // console.log(pointer.attr('class'))
       .removeClass('fadeIn')
-      .addClass('animated pulse infinite');
+      .addClass('animated pulse');
   }
 
   $scope.deanimate = function(index){

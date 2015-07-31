@@ -9,6 +9,22 @@ var LocalStrategy = require('passport-local').Strategy;
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 
+//POST Request for Category/Subcategory Data
+router.post('/numberofsubcategories', function(req, res, next) {
+
+  knex.select('name')
+  .from('subcategories')
+  .where({
+    'cat_id': req.body.id
+  })
+  .then(function(results){
+    res.json(results);
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.json(err);
+  })
+})
 
 /* POST search query */
 router.post('/v1/subcategories', function(req, res, next) {
@@ -48,7 +64,7 @@ router.get('/v1/subcategories/all', function(req, res, next) {
 //{id:[number of the Category ID],name:[string of the name of the category]}
 
 router.get('/v1/categories', function(req, res, next) {
-  knex.select('id', 'name', 'img')
+  knex.select('id', 'name', 'description', 'img')
   .from('categories')
   .then(function(items) {
     res.json(items)
